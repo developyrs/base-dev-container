@@ -6,7 +6,17 @@ RUN curl -L https://github.com/duckdb/duckdb/releases/latest/download/duckdb_cli
     && unzip /tmp/duckdb.zip -d /usr/local/bin \
     && rm /tmp/duckdb.zip
 
-# Install uv (standalone binary)
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
-    && mv /root/.local/bin/uv /usr/local/bin/uv \
-    && mv /root/.local/bin/uvx /usr/local/bin/uvx
+# Install pipx and Poetry
+RUN apt-get update && apt-get install -y --no-install-recommends curl build-essential git \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir pipx \
+    && pipx install poetry \
+    && poetry config virtualenvs.create false
+
+# Set working directory
+WORKDIR /workspace
+
+# Copy source code
+COPY . .
+
+CMD ["sleep", "infinity"]
