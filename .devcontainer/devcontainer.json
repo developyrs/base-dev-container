@@ -12,5 +12,12 @@
         "mechatroner.rainbow-csv"
       ]
     }
+
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/java": { "version": "17" },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
+    "ghcr.io/devcontainers/features/common-utils": {},
+    "ghcr.io/devcontainers/features/git-lfs": {}
   }
 }
